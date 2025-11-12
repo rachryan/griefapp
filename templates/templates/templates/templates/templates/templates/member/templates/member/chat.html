@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Chat{% endblock %}
+{% block content %}
+<h1>Chat</h1>
+<div id="chat" style="border:1px solid #ddd; padding:1rem; height:50vh; overflow:auto;"></div>
+<form id="chat-form">
+  <input id="chat-input" placeholder="Say anything…" autocomplete="off" style="width:80%">
+  <button type="submit">Send</button>
+</form>
+
+<script src="https://cdn.socket.io/4.7.4/socket.io.min.js" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

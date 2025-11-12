@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{% block title %}Grief Support{% endblock %}</title>
+  <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    {% if current_user.is_authenticated %}
+      <a href="{{ url_for('member_dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('chat') }}">Chat</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+  </nav>
+</header>
+<main>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <aside>
+      {% for m in messages %}<p>{{ m }}</p>{% endfor %}
+    </aside>
+  {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer><small>&copy; {{ 2025 }} Grief Support</small></footer>
+</body>
+</html>
